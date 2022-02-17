@@ -1,4 +1,4 @@
-# subscription-app
+# task-app
 
 > A Vue.js project
 

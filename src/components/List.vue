@@ -11,14 +11,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="subscription in Subscriptions" :key="subscription.key">
-                        <td>{{ subscription.name }}</td>
-                        <td>{{ subscription.description }}</td>
-                        <td>{{ subscription.amount }}</td>
+                    <tr v-for="task in tasks" :key="task.key">
+                        <td>{{ task.name }}</td>
+                        <td>{{ task.description }}</td>
+                        <td>{{ task.amount }}</td>
                         <td>
-                            <router-link :to="{name: 'edit', params: { id: subscription.key }}" class="btn btn-primary">Edit
+                            <router-link :to="{name: 'edit', params: { id: task.key }}" class="btn btn-primary">Edit
                             </router-link>
-                            <button @click.prevent="deleteSubscription(subscription.key)" class="btn btn-danger">Delete</button>
+                            <button @click.prevent="deletetask(task.key)" class="btn btn-danger">Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -33,14 +33,14 @@ import { db } from '../firebaseDb'
 export default {
   data () {
     return {
-      Subscriptions: []
+      tasks: []
     }
   },
   created () {
-    db.collection('subscriptions').onSnapshot((snapshotChange) => {
-      this.Subscriptions = []
+    db.collection('tasks').onSnapshot((snapshotChange) => {
+      this.tasks = []
       snapshotChange.forEach((doc) => {
-        this.Subscriptions.push({
+        this.tasks.push({
           key: doc.id,
           name: doc.data().name,
           description: doc.data().description,
@@ -50,9 +50,9 @@ export default {
     })
   },
   methods: {
-    deleteSubscription (id) {
+    deletetask (id) {
       if (window.confirm('Do you really want to delete?')) {
-        db.collection('subscriptions').doc(id).delete().then(() => {
+        db.collection('tasks').doc(id).delete().then(() => {
           console.log('Document deleted!')
         })
           .catch((error) => {

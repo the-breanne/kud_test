@@ -2,13 +2,13 @@
   <div>
     <nav class="navbar navbar-dark bg-dark justify-content-between flex-nowrap flex-row">
       <div class="container">
-        <a class="navbar-brand float-left">Subscription List</a>
+        <a class="navbar-brand float-left">task List</a>
         <ul class="nav navbar-nav flex-row float-right">
           <li class="nav-item">
-            <router-link class="nav-link pr-3" to="/">Add Subscription</router-link>
+            <router-link class="nav-link pr-3" to="/">Add task</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/list">View Subscriptions</router-link>
+            <router-link class="nav-link" to="/list">View tasks</router-link>
           </li>
         </ul>
       </div>
